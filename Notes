@@ -6,6 +6,7 @@ To Magomi:
 		Name-Name
 		##Command
 		#Comment
-	Anything else, Error.
+	Anything else, Error and return 0.
+	Used inside read_content after every line that was read.
 	Proto:
 		int		check_line(char *line);
