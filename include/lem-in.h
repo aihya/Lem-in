@@ -6,7 +6,7 @@
 /*   By: magoumi <magoumi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/25 21:36:40 by aihya             #+#    #+#             */
-/*   Updated: 2019/12/27 17:56:16 by aihya            ###   ########.fr       */
+/*   Updated: 2019/12/27 19:15:15 by magoumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include "libft.h"
+# define STDOUT	1
 
 typedef	struct	s_room
 {
@@ -35,7 +36,8 @@ typedef	struct	s_data
 	t_room**		hashtable;
 }				t_data;
 
-int	get_next_line(const int fd, char **line);
-int	init_hashtable(t_data* data);
+int				get_next_line(const int fd, char **line);
+int				init_hashtable(t_data* data);
+int				read_all(t_data *data);
 
 #endif
