@@ -6,7 +6,7 @@
 /*   By: aihya <aihya@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/27 12:18:29 by aihya             #+#    #+#             */
-/*   Updated: 2019/12/27 17:58:26 by aihya            ###   ########.fr       */
+/*   Updated: 2019/12/27 19:38:30 by aihya            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,9 @@ int		init_hashtable(t_data* data)
 	return (1);
 }
 
-int		fill_hashtable(t_data *data)
-{
-	
-}
+//int		fill_hashtable(t_data *data)
+//{
+//	if (data->content == NULL)
+//		return (0);
+//	
+//}

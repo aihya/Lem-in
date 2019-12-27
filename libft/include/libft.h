@@ -6,7 +6,7 @@
 /*   By: aihya <aihya@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/05 23:15:26 by aihya             #+#    #+#             */
-/*   Updated: 2019/12/27 16:48:17 by aihya            ###   ########.fr       */
+/*   Updated: 2019/12/27 19:35:40 by aihya            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,9 @@
 
 # include <string.h>
 # include <stdlib.h>
+# include <unistd.h>
 
+# define BUFF_SIZE 256
 # define BEGINING 0
 # define LAST_POS -1
 

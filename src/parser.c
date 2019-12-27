@@ -6,7 +6,7 @@
 /*   By: magoumi <magoumi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/27 11:58:57 by aihya             #+#    #+#             */
-/*   Updated: 2019/12/27 19:17:29 by magoumi          ###   ########.fr       */
+/*   Updated: 2019/12/27 20:04:04 by aihya            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,17 @@ int     read_content(t_data *data)
 	int		ret;
 
 	data->content = NULL;
-	ret = -1;
+	ret = 0;
 	while ((ret = get_next_line(STDOUT, &line)) == 1)
-	{	
+	{
+		if (ft_strlen(line) == 0 && !(ret = 0))
+		{
+			ft_strdel(&line);
+			break ;
+		}
 		ft_chain_push(&(data->content),line);
 		ft_strdel(&line);
+		ret = 0;
 	}
 	if (ret == -1)
 		return (0);
@@ -37,6 +43,7 @@ int		read_all(t_data *data)
 		return (0);
 	if ((data->na = ft_atoi(data->content[0])) <= 0)
 		return (0);
+	ft_print_chain(&(data->content), "\n");
 	printf("ants num [%d]\n", data->na);
 	return (1);
 }
