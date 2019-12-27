@@ -6,7 +6,7 @@
 #    By: aihya <aihya@student.1337.ma>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/28 16:28:57 by aihya             #+#    #+#              #
-#    Updated: 2019/12/22 17:01:26 by aihya            ###   ########.fr        #
+#    Updated: 2019/12/27 16:47:24 by aihya            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -101,9 +101,11 @@ OBJ = $(addprefix $(OBJ_PATH)/, $(OBJ_NAME))
 
 CFLAGS = -Wall -Werror -Wextra
 
+DEPS = include/libft.h
+
 all : $(NAME)
 
-$(OBJ_PATH)/%.o : $(SRC_PATH)/%.c
+$(OBJ_PATH)/%.o : $(SRC_PATH)/%.c $(DEPS)
 	@mkdir $(OBJ_PATH) 2>/dev/null || true
 	@echo "Compiling \033[1;33m[$<]\033[0m to \033[1;32m[$@]\033[0m"
 	@gcc $(CFLAGS) -I include -o $@ -c $<

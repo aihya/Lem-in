@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem-in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aihya <aihya@student.1337.ma>              +#+  +:+       +#+        */
+/*   By: magoumi <magoumi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/25 21:36:40 by aihya             #+#    #+#             */
-/*   Updated: 2019/12/27 16:23:28 by aihya            ###   ########.fr       */
+/*   Updated: 2019/12/27 16:51:57 by aihya            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 
 # include <stdio.h>
 # include <stdlib.h>
-
+# include "libft.h"
 
 typedef	struct	s_room
 {
-	char*		name;
-	t_room*		relatives;
-	t_room*		ht_next;
+	char*			name;
+	struct s_room*	relatives;
+	struct s_room*	ht_next;
 }				t_room;
 
 typedef	struct	s_data
@@ -30,6 +30,7 @@ typedef	struct	s_data
 	t_room**	hashtable;
 }				t_data;
 
-int		init_hash_table(t_data* data, int n);
+int	get_next_line(const int fd, char **line);
+int	init_hash_table(t_data* data, int n);
 
 #endif

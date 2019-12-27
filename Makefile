@@ -6,9 +6,11 @@
 #    By: aihya <aihya@student.1337.ma>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/30 10:17:50 by aihya             #+#    #+#              #
-#    Updated: 2019/12/27 12:54:54 by aihya            ###   ########.fr        #
+#    Updated: 2019/12/27 16:50:28 by aihya            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
+.PHONY: all, clean, fclean, re
 
 NAME = lem-in
 
@@ -32,9 +34,11 @@ INCLUDE =	-Iinclude \
 
 LIBS = -Llibft -lft
 
+DEPS = include/lem-in.h
+
 all : $(NAME)
 
-$(OBJ_PATH)/%.o : $(SRC_PATH)/%.c
+$(OBJ_PATH)/%.o : $(SRC_PATH)/%.c $(DEPS)
 	@mkdir $(OBJ_PATH) 2> /dev/null || true
 	@echo "Compiling \033[1;36m[$<]\033[0m to \033[1;32m[$@]\033[0m"
 	@gcc $(CFLAGS) $(INCLUDE) -o $@ -c $<
@@ -42,7 +46,8 @@ $(OBJ_PATH)/%.o : $(SRC_PATH)/%.c
 libft_all:
 	@make -C libft
 
-$(NAME): libft_all $(OBJ)
+$(NAME): $(OBJ)
+	@make -C libft
 	@echo "\033[1;34mCreating $(NAME)\033[0m"
 	@gcc $(OBJ) $(LIBS) -o $@
 
