@@ -6,13 +6,14 @@
 #    By: aihya <aihya@student.1337.ma>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/30 10:17:50 by aihya             #+#    #+#              #
-#    Updated: 2019/12/25 22:52:18 by aihya            ###   ########.fr        #
+#    Updated: 2019/12/27 12:54:54 by aihya            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = lem-in
 
-SRC_NAME =	main.c
+SRC_NAME =	main.c \
+			hash_table.c
 
 OBJ_NAME =	$(SRC_NAME:.c=.o)
 

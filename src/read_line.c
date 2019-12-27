@@ -1,36 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lem-in.h                                           :+:      :+:    :+:   */
+/*   read_line.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aihya <aihya@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/25 21:36:40 by aihya             #+#    #+#             */
-/*   Updated: 2019/12/27 13:20:18 by aihya            ###   ########.fr       */
+/*   Created: 2019/12/27 12:00:24 by aihya             #+#    #+#             */
+/*   Updated: 2019/12/27 12:20:35 by aihya            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LEM_IN_H
-# define LEM_IN_H
+#include "lem-in.h"
 
-# include <stdio.h>
-# include <stdlib.h>
-
-
-typedef	struct	s_room
+char	*read_line(void)
 {
-	char*		name;
-	t_room*		relatives;
-	t_room*		ht_next;
-}				t_room;
+	char	*line;
+	char	buff[1];
+	char	buffer[1024];
+	int		ret;
+	int		i;
 
-typedef	struct	s_data
-{
-	int			n;
-	t_room**	hashtable;
-}				t_data;
-
-char*	read_line(void);
-int		init_hash_table(t_data* data, int n);
-
-#endif
+	buff[0] = '\0';
+	line = NULL;
+	ret = 0;
+	i = 0;
+	while ((ret = read(STDIN_FILENO, buff, 1)) != -1 && i < 1023)
+	{
+		if (ft_strchr(buff, '\n') || ret == 0)
+			break ;
+		buffer[i] = buff[0];
+		ret = 0;
+		i++;
+	}
+	buffer[i] = 0;
+	line = ft_strdup(buffer);
+	return (line);
+}
