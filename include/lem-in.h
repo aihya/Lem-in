@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem-in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aihya <aihya@student.1337.ma>              +#+  +:+       +#+        */
+/*   By: magoumi <magoumi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/25 21:36:40 by aihya             #+#    #+#             */
-/*   Updated: 2019/12/27 13:20:18 by aihya            ###   ########.fr       */
+/*   Updated: 2019/12/27 16:27:10 by magoumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,19 @@
 # include <stdio.h>
 # include <stdlib.h>
 
+typedef struct		s_list
+{
+	void			*content;
+	size_t			content_size;
+	struct s_list	*next;
+}					t_list;
+
+typedef struct		s_lst
+{
+	char			*cut;
+	int				fd;
+	struct s_lst	*next;
+}					t_lst;
 
 typedef	struct	s_room
 {
