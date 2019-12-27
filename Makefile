@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aihya <aihya@student.1337.ma>              +#+  +:+       +#+         #
+#    By: magoumi <magoumi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/30 10:17:50 by aihya             #+#    #+#              #
-#    Updated: 2019/12/27 16:50:28 by aihya            ###   ########.fr        #
+#    Updated: 2019/12/27 19:17:07 by magoumi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,9 @@
 NAME = lem-in
 
 SRC_NAME =	main.c \
-			hash_table.c
+			hash_table.c \
+			parser.c \
+			get_next_line.c
 
 OBJ_NAME =	$(SRC_NAME:.c=.o)
 
