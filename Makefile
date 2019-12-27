@@ -6,7 +6,7 @@
 #    By: magoumi <magoumi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/30 10:17:50 by aihya             #+#    #+#              #
-#    Updated: 2019/12/27 19:17:07 by magoumi          ###   ########.fr        #
+#    Updated: 2019/12/27 19:36:14 by aihya            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,7 +48,7 @@ $(OBJ_PATH)/%.o : $(SRC_PATH)/%.c $(DEPS)
 libft_all:
 	@make -C libft
 
-$(NAME): $(OBJ)
+$(NAME): libft_all $(OBJ)
 	@make -C libft
 	@echo "\033[1;34mCreating $(NAME)\033[0m"
 	@gcc $(OBJ) $(LIBS) -o $@
