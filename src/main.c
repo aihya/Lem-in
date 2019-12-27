@@ -3,17 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aihya <aihya@student.1337.ma>              +#+  +:+       +#+        */
+/*   By: magoumi <magoumi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/25 21:35:34 by aihya             #+#    #+#             */
-/*   Updated: 2019/12/27 16:38:44 by aihya            ###   ########.fr       */
+/*   Updated: 2019/12/27 19:15:57 by magoumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem-in.h"
 
-int		main()
+int		main(void)
 {
+	t_data	data;
 
+	if (!read_all(&data))
+		return (printf("error\n"));
 	return (0);
 }
