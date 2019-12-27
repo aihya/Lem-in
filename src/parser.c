@@ -6,11 +6,68 @@
 /*   By: magoumi <magoumi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/27 11:58:57 by aihya             #+#    #+#             */
-/*   Updated: 2019/12/27 20:05:22 by aihya            ###   ########.fr       */
+/*   Updated: 2019/12/28 00:45:05 by magoumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem-in.h"
+
+int		free_line(char **line)
+{
+	ft_strdel(line);
+	return (0);
+}
+
+int		is_link(char *line)
+{
+	int i;
+
+	i = 0;
+	while (line[i] && line[i] != '-')
+		i++;
+	if (i != '-')
+		return (0);
+	while (line[i] && line[i] != ' ')
+		i++;
+	if (line[i])
+		return(0);
+	return (1);
+}
+
+int		is_room(char *line)
+{
+	int i;
+	int j;
+
+	i = 0;
+	while (line[i] && line[i] != ' ')
+		i++;
+	i++;
+	j = 0;
+	while (line[i])
+	{
+		if ((line[i] > '9' || line[i] < '0') || line != ' ')
+			return (0);
+		if (line[i] == ' ')
+			j++;
+		i++;
+	}
+	if (j > 1)
+		return (0);
+	return (1);
+}
+
+int		check_line(char *line)
+{
+	int i;
+
+	i = 0;
+	if (line[i] == '#')
+		return (1);
+	if (!is_link(line) && !is_room(line))
+		return (0);
+	return (1);
+}
 
 int     read_content(t_data *data)
 {
@@ -26,6 +83,8 @@ int     read_content(t_data *data)
 			ft_strdel(&line);
 			break ;
 		}
+		if (check_line(line))
+			return (free_line(&line));
 		ft_chain_push(&(data->content),line);
 		ft_strdel(&line);
 		ret = 0;
