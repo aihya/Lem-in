@@ -1,0 +1,11 @@
+To Magomi:
+	Make a function to check the validity of the line that has been read.
+	Should be one of these formats:
+		Number
+		Name Number Number
+		Name-Name
+		##Command
+		#Comment
+	Anything else, Error.
+	Proto:
+		int		check_line(char *line);
