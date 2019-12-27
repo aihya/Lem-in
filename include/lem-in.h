@@ -6,7 +6,7 @@
 /*   By: magoumi <magoumi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/25 21:36:40 by aihya             #+#    #+#             */
-/*   Updated: 2019/12/27 17:47:14 by aihya            ###   ########.fr       */
+/*   Updated: 2019/12/27 17:56:16 by aihya            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,16 @@ typedef	struct	s_room
 
 typedef	struct	s_data
 {
-	int			na;
-	int			nr;
-	t_room		*rooms;
-	int			is;
-	int			ie;
-	t_room**	hashtable;
+	int				na;
+	int				nr;
+	int				is;
+	int				ie;
+	char			**content;
+	t_room			*rooms;
+	t_room**		hashtable;
 }				t_data;
 
 int	get_next_line(const int fd, char **line);
-int	init_hash_table(t_data* data);
-
-
+int	init_hashtable(t_data* data);
 
 #endif

@@ -6,20 +6,22 @@
 /*   By: aihya <aihya@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/27 12:18:29 by aihya             #+#    #+#             */
-/*   Updated: 2019/12/27 17:47:22 by aihya            ###   ########.fr       */
+/*   Updated: 2019/12/27 17:58:26 by aihya            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem-in.h"
 
-int		init_hash_table(t_data* data)
+int		init_hashtable(t_data* data)
 {
 	int		i;
+	int		nr;
 
-	if ((data->hashtable = (t_room**)malloc(sizeof(t_room*) * data->nr)) == NULL)
+	nr = data->nr;
+	if ((data->hashtable = (t_room**)malloc(sizeof(t_room*) * nr)) == NULL)
 		return (0);
 	i = 0;
-	while (i < n)
+	while (i < nr)
 	{
 		data->hashtable[i] = NULL;
 		i++;
@@ -27,4 +29,7 @@ int		init_hash_table(t_data* data)
 	return (1);
 }
 
-
+int		fill_hashtable(t_data *data)
+{
+	
+}
