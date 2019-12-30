@@ -6,7 +6,7 @@
 /*   By: aihya <aihya@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/25 21:35:34 by aihya             #+#    #+#             */
-/*   Updated: 2019/12/30 15:15:04 by aihya            ###   ########.fr       */
+/*   Updated: 2019/12/30 16:25:21 by aihya            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int		main(void)
 	if (!read_all(&data))
 		return (printf("error\n"));
 	if (data.nr == 0)
+		return (printf("error\n"));
 	init_hashtable(&data);
 	fill_hashtable(&data);
 	i = 0;

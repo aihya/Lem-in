@@ -6,7 +6,7 @@
 /*   By: aihya <aihya@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/27 11:58:57 by aihya             #+#    #+#             */
-/*   Updated: 2019/12/30 14:13:51 by aihya            ###   ########.fr       */
+/*   Updated: 2019/12/30 15:51:02 by aihya            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ int     read_content(t_data *data)
 	test_first_line = 1;
 	data->content = NULL;
 	ret = 0;
-	while ((ret = get_next_line(STDOUT_FILENO, &line)) == 1)
+	while ((ret = get_next_line(STDIN_FILENO, &line)) == 1)
 	{
 		if (ft_strlen(line) == 0 && !(ret = 0))
 		{
