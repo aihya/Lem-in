@@ -6,7 +6,7 @@
 /*   By: aihya <aihya@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/27 12:18:29 by aihya             #+#    #+#             */
-/*   Updated: 2019/12/30 15:13:58 by aihya            ###   ########.fr       */
+/*   Updated: 2019/12/30 20:20:38 by aihya            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,6 @@ int		fill_hashtable(t_data* data)
 	{
 		if (is_room(data->content[i]))
 		{
-		//	printf("Filling [%s]\n", data->content[i]);
 			buff = ft_strsplit(data->content[i], ' ');
 			if (buff == NULL)
 				return (0);

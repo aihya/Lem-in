@@ -6,7 +6,7 @@
 /*   By: aihya <aihya@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/05 23:15:26 by aihya             #+#    #+#             */
-/*   Updated: 2019/12/27 19:35:40 by aihya            ###   ########.fr       */
+/*   Updated: 2019/12/30 17:59:48 by aihya            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ typedef struct		s_lst
 	struct s_lst	*next;
 }					t_lst;
 
+int				ft_strisempty(char *str);
 char			*ft_strappend(char **a_s1, char c, int overwrite);
 int				ft_isalphanumeric(char c);
 void			ft_print_chain(char ***a_chain, char *del);

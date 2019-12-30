@@ -6,16 +6,22 @@
 /*   By: aihya <aihya@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/25 21:35:34 by aihya             #+#    #+#             */
-/*   Updated: 2019/12/30 16:25:21 by aihya            ###   ########.fr       */
+/*   Updated: 2019/12/30 19:25:12 by aihya            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem-in.h"
 
+int		error()
+{
+	ft_putendl("ERROR");
+	return (0);
+}
+
 int		main(void)
 {
 	t_data	data;
-	t_room	*room;
+	t_room*	room;
 	int		i;
 
 	data.na = 0;
@@ -24,12 +30,14 @@ int		main(void)
 	data.ie = -1;
 	data.start = NULL;
 	data.end = NULL;
+	data.content = NULL;
 	if (!read_all(&data))
-		return (printf("error\n"));
+		return (error());
 	if (data.nr == 0)
-		return (printf("error\n"));
+		return (error());
 	init_hashtable(&data);
-	fill_hashtable(&data);
+	if (fill_hashtable(&data) == 0)
+		return (error());
 	i = 0;
 	while (i < data.nr)
 	{

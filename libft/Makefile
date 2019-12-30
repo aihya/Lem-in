@@ -6,7 +6,7 @@
 #    By: aihya <aihya@student.1337.ma>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/28 16:28:57 by aihya             #+#    #+#              #
-#    Updated: 2019/12/27 16:47:24 by aihya            ###   ########.fr        #
+#    Updated: 2019/12/30 17:59:13 by aihya            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,7 @@
 NAME = libft.a
 
 SRC_NAME =	ft_abs.c \
+			ft_strisempty.c \
 			ft_atoi.c \
 			ft_begins_with.c \
 			ft_bzero.c \
