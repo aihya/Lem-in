@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: magoumi <magoumi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aihya <aihya@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/27 11:58:57 by aihya             #+#    #+#             */
-/*   Updated: 2019/12/28 01:04:55 by magoumi          ###   ########.fr       */
+/*   Updated: 2019/12/30 14:13:51 by aihya            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,67 +20,64 @@ int		free_line(char **line)
 
 int		is_link(char *line)
 {
-	int i;
+	char**	buff;
+	int		ret;
 
-	i = 0;
-	while (line[i] && line[i] != '-')
-		i++;
-	if (i != '-')
-		return (0);
-	while (line[i] && line[i] != ' ')
-		i++;
-	if (line[i])
-		return(0);
-	return (1);
+	ret = 1;
+	buff = ft_strsplit(line, '-');
+	if (buff == NULL || ft_chain_size(buff) != 2)
+	{
+		ret = 0;
+		ft_chain_free(&buff);
+	}
+	return (ret);
 }
 
 int		is_room(char *line)
 {
-	int i;
-	int j;
+	char**	buff;
+	int		ret;
 
-	i = 0;
-	while (line[i] && line[i] != ' ')
-		i++;
-	i++;
-	j = 0;
-	while (line[i])
+	ret = 1;
+	buff = ft_strsplit(line, ' ');
+	if (buff == NULL || ft_chain_size(buff) != 3)
 	{
-		if (((line[i] > '9' || line[i] < '0')) && line[i] != ' ')
-			return (0);
-		if (line[i] == ' ')
-			j++;
-		i++;
+		ret = 0;
+		if (buff != NULL)
+			ft_chain_free(&buff);
 	}
-	if (j > 1)
+	if (ret && (!ft_strisnum(buff[1]) || !(ft_strisnum(buff[2]))))
+	{
+		ret = 0;
+		ft_chain_free(&buff);
+	}
+	return (ret);
+}
+
+int		check_line(char *line, int test_first_line)
+{
+	static int	start_counter = 0;
+	static int	end_counter = 0;
+
+	if (test_first_line)
+	{
+		if (ft_strisnum(line))
+			return (1);
 		return (0);
-	return (1);
-}
-
-int		is_num(char *line)
-{
-	int i;
-
-	i = 0;
-	while (line[i])
-	{
-		if (line[i] == '\n')
-			break ;
-		if (!ft_isdigit(line[i]))
-			return (0);
-		i++;
 	}
-	return (1);
-}
-
-int		check_line(char *line)
-{
-	int i;
-
-	i = 0;
-	if (line[i] == '#')
+	if (ft_strequ(line, START_CMD) && ++start_counter)
+	{
+		if (start_counter > 1)
+			return (0);
+	}
+	if (ft_strequ(line, END_CMD) && ++end_counter)
+	{
+		if (end_counter > 1)
+			return (0);
+	}
+	if (line[0] == '#')
 		return (1);
-	if (!is_link(line) && !is_room(line) && !is_num(line))
+	if (line[0] == 'L' || (!is_link(line) && !is_room(line)))
 		return (0);
 	return (1);
 }
@@ -89,20 +86,25 @@ int     read_content(t_data *data)
 {
 	char	*line;
 	int		ret;
+	int		test_first_line;
 
+	test_first_line = 1;
 	data->content = NULL;
 	ret = 0;
-	while ((ret = get_next_line(STDOUT, &line)) == 1)
+	while ((ret = get_next_line(STDOUT_FILENO, &line)) == 1)
 	{
 		if (ft_strlen(line) == 0 && !(ret = 0))
 		{
 			ft_strdel(&line);
 			break ;
 		}
-		if (!check_line(line))
+		if (!check_line(line, test_first_line))
 			return (free_line(&line));
+		if (is_room(line))
+			data->nr++;
 		ft_chain_push(&(data->content),line);
 		ft_strdel(&line);
+		test_first_line = 0;
 		ret = 0;
 	}
 	if (ret == -1)
@@ -118,7 +120,6 @@ int		read_all(t_data *data)
 		return (0);
 	if ((data->na = ft_atoi(data->content[0])) <= 0)
 		return (0);
-	ft_print_chain(&(data->content), "\n");
 	printf("ants num [%d]\n", data->na);
 	return (1);
 }
