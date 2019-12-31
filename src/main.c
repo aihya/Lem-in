@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aihya <aihya@student.1337.ma>              +#+  +:+       +#+        */
+/*   By: aihya <aihya@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/25 21:35:34 by aihya             #+#    #+#             */
-/*   Updated: 2019/12/30 19:25:12 by aihya            ###   ########.fr       */
+/*   Updated: 2019/12/31 18:53:56 by aihya            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int		main(void)
 	data.start = NULL;
 	data.end = NULL;
 	data.content = NULL;
-	if (!read_all(&data))
+	if (!read_content(&data))
 		return (error());
 	if (data.nr == 0)
 		return (error());

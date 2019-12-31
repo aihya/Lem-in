@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aihya <aihya@student.1337.ma>              +#+  +:+       +#+         #
+#    By: aihya <aihya@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/28 16:28:57 by aihya             #+#    #+#              #
-#    Updated: 2019/12/30 17:59:13 by aihya            ###   ########.fr        #
+#    Updated: 2019/12/31 18:25:30 by aihya            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,7 @@
 NAME = libft.a
 
 SRC_NAME =	ft_abs.c \
+			ft_char_count.c \
 			ft_strisempty.c \
 			ft_atoi.c \
 			ft_begins_with.c \

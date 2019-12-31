@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem-in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aihya <aihya@student.1337.ma>              +#+  +:+       +#+        */
+/*   By: aihya <aihya@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/25 21:36:40 by aihya             #+#    #+#             */
-/*   Updated: 2019/12/30 20:20:09 by aihya            ###   ########.fr       */
+/*   Updated: 2019/12/31 18:54:20 by aihya            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ typedef	struct	s_data
 
 int				get_next_line(const int fd, char** line);
 int				init_hashtable(t_data* data);
-int				read_all(t_data* data);
+int				read_content(t_data* data);
 int				is_room(char *line);
 int				init_hashtable(t_data* data);
 int				fill_hashtable(t_data* data);
