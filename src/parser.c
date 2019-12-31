@@ -6,7 +6,7 @@
 /*   By: aihya <aihya@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/30 19:08:29 by aihya             #+#    #+#             */
-/*   Updated: 2019/12/31 19:00:20 by aihya            ###   ########.fr       */
+/*   Updated: 2019/12/31 20:50:25 by aihya            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int		is_link(char* line)
 	i = 0;
 	while (line[i])
 	{
-		if (!ft_isprint(line[i]))
+		if (!ft_isprint(line[i]) || line[i] == ' ')
 			return (-1);
 		i++;
 	}
@@ -107,6 +107,7 @@ int		append_line(t_data* data, char* line)
 	type = check_line(line);
 	if (type == ROOM && room_flag == 1 && !(init_stat = 0))
 	{
+		data->nr++;
 		ft_chain_push(&(data->content), line);
 		return (1);
 	}
@@ -133,17 +134,16 @@ int		read_content(t_data *data)
 	test_first_line = 1;
 	while ((ret = get_next_line(STDIN_FILENO, &line)) == 1)
 	{
-		printf("LINE: [%s]\n", line);
 		if (!ft_strisempty(line))
 			return (0);
 		if (test_first_line)
 		{
 			if (!ft_strisnum(line) || (data->na = ft_atoi(line)) <= 0)
 				return (0);
+			test_first_line = 0;
 		}
-		if (!append_line(data, line))
+		else if (!append_line(data, line))
 			return (0);
-		printf("LINEEE\n");
 		ft_strdel(&line);
 	}
 	if (ret == -1)
