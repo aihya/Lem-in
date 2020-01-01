@@ -6,7 +6,7 @@
 /*   By: aihya <aihya@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/27 12:18:29 by aihya             #+#    #+#             */
-/*   Updated: 2020/01/01 17:21:25 by aihya            ###   ########.fr       */
+/*   Updated: 2020/01/01 19:59:56 by aihya            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,10 @@ int		fill_hashtable(t_data* data)
 	i = 0;
 	while (data->content[i])
 	{
+//		if (ft_strequ(data->content[i], START_CMD))
+//		{
+//			if (data->content[i + 1] && !is_room(data->content[i]))
+//		}
 		if (is_room(data->content[i]))
 		{
 			buff = ft_strsplit(data->content[i], ' ');

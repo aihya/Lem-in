@@ -6,7 +6,7 @@
 /*   By: aihya <aihya@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/30 17:31:06 by aihya             #+#    #+#             */
-/*   Updated: 2019/12/30 19:15:19 by aihya            ###   ########.fr       */
+/*   Updated: 2020/01/01 21:00:09 by aihya            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,14 @@ int     ft_strisempty(char *str)
 	int     i;
 
 	i = 0;
-	while (str[i])
+	if (str)
 	{
-		if (!ft_isprint(str[i]))
-			return (0);
-		i++;
+		while (str[i])
+		{
+			if (ft_isprint(str[i]))
+				return (0);
+			i++;
+		}
 	}
-	if (i == 0)
-		return (0);
 	return (1);
 }

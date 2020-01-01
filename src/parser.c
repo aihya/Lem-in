@@ -6,11 +6,38 @@
 /*   By: aihya <aihya@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/30 19:08:29 by aihya             #+#    #+#             */
-/*   Updated: 2019/12/31 20:50:25 by aihya            ###   ########.fr       */
+/*   Updated: 2020/01/01 21:24:18 by aihya            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem-in.h"
+
+char	*read_line(void)
+{
+	char	*line;
+	char	buff;
+	char	buffer[1024];
+	int		ret;
+	int		i;
+
+	buff = '\0';
+	buffer[0] = '\0';
+	line = NULL;
+	ret = 0;
+	i = 0;
+	while ((ret = read(STDIN_FILENO, &buff, 1)) != -1 && i < 1024)
+	{
+		if (buff == '\n' || ret == 0)
+			break ;
+		buffer[i] = buff;
+		ret = 0;
+		i++;
+	}
+	buffer[i] = '\0';
+	line = ft_strdup(buffer);
+	ft_putendl(line);
+	return (line);
+}
 
 int		is_comment(char *line)
 {
@@ -29,8 +56,13 @@ int		comment_check(t_data* data, char* line)
 
 	status = is_comment(line);
 	if (status == CMD)
+	{
 		ft_chain_push(&(data->content), line);
-	return (status);
+		return (1);
+	}
+	else if (status == 2)
+		return (1);
+	return (0);
 }
 
 int		is_room(char* line)
@@ -73,11 +105,13 @@ int		is_link(char* line)
 	}
 	ret = 1;
 	if (ft_char_count(line, '-') != 1)
-		return (0);
-	buf = ft_strsplit(line, '-');
-	if (ft_chain_size(buf) != 2)
 		ret = 0;
-	return (1);
+	if (ret && (buf = ft_strsplit(line, '-')) == NULL)
+		ret = 0;
+	if (ret && ft_chain_size(buf) != 2)
+		ret = 0;
+	ft_chain_free(&buf);
+	return (ret);
 }
 
 int		check_line(char* line)
@@ -125,28 +159,35 @@ int		append_line(t_data* data, char* line)
 
 int		read_content(t_data *data)
 {
-	int		ret;
 	int		test_first_line;
 	char*	line;
 
-	ret = 0;
 	line = NULL;
 	test_first_line = 1;
-	while ((ret = get_next_line(STDIN_FILENO, &line)) == 1)
+	while ((line = read_line()))
 	{
-		if (!ft_strisempty(line))
+		ft_putendl(line);
+		if (ft_strlen(line) == 0)
+		{
+			ft_putendl("Out 0");
+			return (1);
+		}
+		ft_putendl("--- 1");
+		if (ft_strisempty(line))
 			return (0);
 		if (test_first_line)
 		{
+			ft_putendl("---2");
 			if (!ft_strisnum(line) || (data->na = ft_atoi(line)) <= 0)
 				return (0);
 			test_first_line = 0;
 		}
 		else if (!append_line(data, line))
+		{
+			ft_putstr("Out");
 			return (0);
+		}
 		ft_strdel(&line);
 	}
-	if (ret == -1)
-		return (0);
 	return (1);
 }
