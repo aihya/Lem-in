@@ -6,7 +6,7 @@
 /*   By: aihya <aihya@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/30 19:08:29 by aihya             #+#    #+#             */
-/*   Updated: 2020/01/01 21:24:18 by aihya            ###   ########.fr       */
+/*   Updated: 2020/01/02 16:24:08 by aihya            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ char	*read_line(void)
 	}
 	buffer[i] = '\0';
 	line = ft_strdup(buffer);
-	ft_putendl(line);
+//	ft_putendl(line);
 	return (line);
 }
 
@@ -65,7 +65,7 @@ int		comment_check(t_data* data, char* line)
 	return (0);
 }
 
-int		is_room(char* line)
+int		is_vertex(char* line)
 {
 	int		i;
 	int		ret;
@@ -119,8 +119,8 @@ int		check_line(char* line)
 	int		ret;
 
 	ret = 0;
-	if ((ret = is_room(line)) == 1)
-		return (ROOM);
+	if ((ret = is_vertex(line)) == 1)
+		return (VERTEX);
 	else if (ret == -1)
 		return (-1);
 	if ((ret = is_link(line)) == 1)
@@ -133,23 +133,23 @@ int		check_line(char* line)
 int		append_line(t_data* data, char* line)
 {
 	static int	init_stat = 1;
-	static int	room_flag = 1;
+	static int	vertex_flag = 1;
 	int			type;
 
 	if (comment_check(data, line) == 1)
 		return (1);
 	type = check_line(line);
-	if (type == ROOM && room_flag == 1 && !(init_stat = 0))
+	if (type == VERTEX && vertex_flag == 1 && !(init_stat = 0))
 	{
 		data->nr++;
 		ft_chain_push(&(data->content), line);
 		return (1);
 	}
-	else if (type == ROOM && room_flag == 0)
+	else if (type == VERTEX && vertex_flag == 0)
 		return (0);
 	if (type == LINK && init_stat == 1)
 		return (0);
-	else if (type == LINK && !(room_flag = 0))
+	else if (type == LINK && !(vertex_flag = 0))
 	{
 		ft_chain_push(&(data->content), line);
 		return (1);
@@ -166,25 +166,25 @@ int		read_content(t_data *data)
 	test_first_line = 1;
 	while ((line = read_line()))
 	{
-		ft_putendl(line);
+//		ft_putendl(line);
 		if (ft_strlen(line) == 0)
 		{
-			ft_putendl("Out 0");
+//			ft_putendl("Out 0");
 			return (1);
 		}
-		ft_putendl("--- 1");
+//		ft_putendl("--- 1");
 		if (ft_strisempty(line))
 			return (0);
 		if (test_first_line)
 		{
-			ft_putendl("---2");
+//			ft_putendl("---2");
 			if (!ft_strisnum(line) || (data->na = ft_atoi(line)) <= 0)
 				return (0);
 			test_first_line = 0;
 		}
 		else if (!append_line(data, line))
 		{
-			ft_putstr("Out");
+//			ft_putstr("Out");
 			return (0);
 		}
 		ft_strdel(&line);

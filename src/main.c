@@ -6,7 +6,7 @@
 /*   By: aihya <aihya@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/25 21:35:34 by aihya             #+#    #+#             */
-/*   Updated: 2020/01/01 21:12:27 by aihya            ###   ########.fr       */
+/*   Updated: 2020/01/02 16:19:30 by aihya            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ int		error()
 
 int		main(void)
 {
-	t_data	data;
-	t_room*	room;
+	t_data		data;
+	t_vertex*	room;
 	int		i;
 
 	data.na = 0;
@@ -31,18 +31,18 @@ int		main(void)
 	data.start = NULL;
 	data.end = NULL;
 	data.content = NULL;
-	ft_putendl("-------------- 0\n");
+//	ft_putendl("-------------- 0\n");
 	if (!read_content(&data))
 		return (error());
-	ft_putendl("-------------- 1\n");
+//	ft_putendl("-------------- 1\n");
 	if (data.nr == 0)
 		return (error());
-	ft_putendl("-------------- 2\n");
+//	ft_putendl("-------------- 2\n");
 	init_hashtable(&data);
-	ft_putendl("-------------- 3\n");
+//	ft_putendl("-------------- 3\n");
 	if (fill_hashtable(&data) == 0)
 		return (error());
-	ft_putendl("-------------- 4\n");
+//	ft_putendl("-------------- 4\n");
 	i = 0;
 	while (i < data.nr)
 	{

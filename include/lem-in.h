@@ -6,7 +6,7 @@
 /*   By: aihya <aihya@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/25 21:36:40 by aihya             #+#    #+#             */
-/*   Updated: 2020/01/01 17:56:49 by aihya            ###   ########.fr       */
+/*   Updated: 2020/01/02 16:52:58 by aihya            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,15 @@
 # define END_CMD	"##end"
 # define CMD		1
 # define COMMENT	2
-# define ROOM		1
+# define VERTEX		1
 # define LINK		2
 
-typedef	struct	s_room
+typedef	struct	s_vertex
 {
-	char*			name;
-	struct s_room*	relatives;
-	struct s_room*	next;
-}				t_room;
+	char*				name;
+	struct s_vertex*	neighbors;
+	struct s_vertex*	next;
+}				t_vertex;
 
 typedef	struct	s_data
 {
@@ -39,16 +39,16 @@ typedef	struct	s_data
 	int				is;
 	int				ie;
 	char**			content;
-	t_room*			rooms;
-	t_room*			start;
-	t_room*			end;
-	t_room**		hashtable;
+	t_vertex*		vertices;
+	t_vertex*		start;
+	t_vertex*		end;
+	t_vertex**		hashtable;
 }				t_data;
 
 int				get_next_line(const int fd, char** line);
 int				init_hashtable(t_data* data);
 int				read_content(t_data* data);
-int				is_room(char *line);
+int				is_vertex(char *line);
 int				init_hashtable(t_data* data);
 int				fill_hashtable(t_data* data);
 int				error();

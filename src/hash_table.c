@@ -6,7 +6,7 @@
 /*   By: aihya <aihya@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/27 12:18:29 by aihya             #+#    #+#             */
-/*   Updated: 2020/01/01 19:59:56 by aihya            ###   ########.fr       */
+/*   Updated: 2020/01/02 16:25:15 by aihya            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int		init_hashtable(t_data* data)
 	int		nr;
 
 	nr = data->nr;
-	if ((data->hashtable = (t_room**)malloc(sizeof(t_room*) * nr)) == NULL)
+	if ((data->hashtable = (t_vertex**)malloc(sizeof(t_vertex*) * nr)) == NULL)
 		return (0);
 	i = 0;
 	while (i < nr)
@@ -29,15 +29,15 @@ int		init_hashtable(t_data* data)
 	return (1);
 }
 
-t_room*	new_room(char* name)
+t_vertex*	new_vertex(char* name)
 {
-	t_room*	room;
+	t_vertex*	vertex;
 
-	if ((room = (t_room*)malloc(sizeof(t_room))) == NULL)
+	if ((vertex = (t_vertex*)malloc(sizeof(t_vertex))) == NULL)
 		return (NULL);
-	room->name = ft_strdup(name);
-	room->next = NULL;
-	return (room);
+	vertex->name = ft_strdup(name);
+	vertex->next = NULL;
+	return (vertex);
 }
 
 int		hash_function(char *str, int upper_bound)
@@ -58,28 +58,28 @@ int		hash_function(char *str, int upper_bound)
 	return (hash);
 }
 
-t_room*	add_to_hashtable(t_data *data, int hash, char *value)
+t_vertex*	add_to_hashtable(t_data *data, int hash, char *value)
 {
-	t_room	*room;
+	t_vertex	*vertex;
 
 	if (data->hashtable[hash] == NULL)
 	{
-		if ((data->hashtable[hash] = new_room(value)) == NULL)
+		if ((data->hashtable[hash] = new_vertex(value)) == NULL)
 			return (NULL);
 		return (data->hashtable[hash]);
 	}
-	room = data->hashtable[hash];
-	while (room->next)
+	vertex = data->hashtable[hash];
+	while (vertex->next)
 	{
-		if (ft_strequ(room->name, value))
+		if (ft_strequ(vertex->name, value))
 			return (NULL);
-		room = room->next;
+		vertex = vertex->next;
 	}
-	if (ft_strequ(room->name, value))
+	if (ft_strequ(vertex->name, value))
 		return (NULL);
-	if ((room->next = new_room(value)) == NULL)
+	if ((vertex->next = new_vertex(value)) == NULL)
 		return (NULL);
-	return (room->next);
+	return (vertex->next);
 }
 
 int		fill_hashtable(t_data* data)
@@ -87,7 +87,7 @@ int		fill_hashtable(t_data* data)
 	int		i;
 	int		hash;
 	char**	buff;
-	t_room*	room;
+	t_vertex*	vertex;
 
 	if (data->content == NULL)
 		return (0);
@@ -96,26 +96,26 @@ int		fill_hashtable(t_data* data)
 	{
 //		if (ft_strequ(data->content[i], START_CMD))
 //		{
-//			if (data->content[i + 1] && !is_room(data->content[i]))
+//			if (data->content[i + 1] && !is_vertex(data->content[i]))
 //		}
-		if (is_room(data->content[i]))
+		if (is_vertex(data->content[i]))
 		{
 			buff = ft_strsplit(data->content[i], ' ');
 			if (buff == NULL)
 				return (0);
 			hash = hash_function(buff[0], data->nr);
-			if ((room = add_to_hashtable(data, hash, buff[0])) == NULL)
+			if ((vertex = add_to_hashtable(data, hash, buff[0])) == NULL)
 				return (0);
 			ft_chain_free(&buff);
 			if (i - 1 >= 0 && ft_strequ(data->content[i - 1], START_CMD))
 			{
 				data->is = hash;
-				data->start = room;
+				data->start = vertex;
 			}
 			if (i - 1 >= 0 && ft_strequ(data->content[i - 1], END_CMD))
 			{
 				data->ie = hash;
-				data->end = room;
+				data->end = vertex;
 			}
 		}
 		i++;
