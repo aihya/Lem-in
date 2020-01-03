@@ -6,7 +6,7 @@
 /*   By: aihya <aihya@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/27 12:18:29 by aihya             #+#    #+#             */
-/*   Updated: 2020/01/03 19:02:12 by aihya            ###   ########.fr       */
+/*   Updated: 2020/01/03 23:38:02 by aihya            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,10 +90,16 @@ t_vertex*	set_vertex(t_data* data, int index, int* hash)
 
 	vertex = NULL;
 	if ((buff = ft_strsplit(data->content[index], ' ')) == NULL)
+	{
+		ft_chain_free(&buff);
 		return (NULL);
+	}
 	_hash = hash_function(buff[0], data->nr);
 	if ((vertex = add_to_hashtable(data, _hash, buff[0])) == NULL)
+	{
+		ft_chain_free(&buff);
 		return (NULL);
+	}
 	if (hash)
 		*hash = _hash;
 	ft_chain_free(&buff);
@@ -127,7 +133,7 @@ int		set_command(t_data* data, int index)
 	hash = 0;
 	if (data->content[index + 1])
 	{
-	printf("--> [%s]\n", data->content[index + 1]);
+	printf("--> [%s][%s]\n", data->content[index], data->content[index + 1]);
 		if (is_vertex(data->content[index + 1]) != 1)
 			return (0);
 		if (ft_strequ(data->content[index], START_CMD))
@@ -154,6 +160,9 @@ int		fill_hashtable(t_data* data)
 //	char**		buff;
 //	t_vertex*	vertex;
 
+	printf("--------------\n");
+	ft_print_chain(&(data->content), "\n");
+	printf("--------------\n");
 	if (data->content == NULL)
 		return (0);
 	i = 0;
@@ -162,6 +171,7 @@ int		fill_hashtable(t_data* data)
 		if (ft_strequ(data->content[i], START_CMD)
 		||	ft_strequ(data->content[i], END_CMD))
 		{
+			printf("START / END\n");
 			if (!set_command(data, i))
 				return (0);
 			i++;

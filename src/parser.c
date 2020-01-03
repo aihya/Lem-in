@@ -6,7 +6,7 @@
 /*   By: aihya <aihya@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/30 19:08:29 by aihya             #+#    #+#             */
-/*   Updated: 2020/01/03 16:42:04 by aihya            ###   ########.fr       */
+/*   Updated: 2020/01/03 23:43:32 by aihya            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,13 +56,11 @@ int		comment_check(t_data* data, char* line)
 	int		status;
 
 	status = is_comment(line);
-	if (status == CMD)
+	if (status == CMD || status == COMMENT)
 	{
 		ft_chain_push(&(data->content), line);
 		return (1);
 	}
-	else if (status == 2)
-		return (1);
 	return (0);
 }
 
