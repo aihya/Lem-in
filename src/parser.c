@@ -40,6 +40,11 @@ char	*read_line(void)
 	return (line);
 }
 
+/*
+	returns 1 when the line corresponds to a start or end command.
+	returns 2 when it a comment.
+	otherwise, returns 0.
+*/
 int		is_comment(char *line)
 {
 	if (line[0] == '#')
@@ -51,6 +56,10 @@ int		is_comment(char *line)
 	return (0);
 }
 
+/*
+	Check if the line corresponds to a comment in general
+	and push to data.content buffer for later parsing.
+*/
 int		comment_check(t_data* data, char* line)
 {
 	int		status;
@@ -64,6 +73,11 @@ int		comment_check(t_data* data, char* line)
 	return (0);
 }
 
+/*
+	Checks whether the line corresponds to a vertex in the following form:
+		NAME X_COORD Y_COORD
+	if the line contains invalid caracters, the function -1 as a response.
+*/
 int		is_vertex(char* line)
 {
 	int		i;
@@ -113,6 +127,11 @@ int		is_link(char* line)
 	return (ret);
 }
 
+/*
+	Checks whether the line is a vertex or a line(edge).
+	returns the macro VERTEX or LINK if it corresponds to a vertex or line.
+	if it has invalid caracters, return -1 as a signal.
+*/
 int		check_line(char* line)
 {
 	int		ret;
@@ -129,6 +148,11 @@ int		check_line(char* line)
 	return (0);
 }
 
+/*
+	Attempts to append the line to data.content buffer only if it is a vertex
+	or a link(edge) or a comment(including commands).
+	otherwise, return 0 as an error signal.
+*/
 int		append_line(t_data* data, char* line)
 {
 	static int	init_stat = 1;
@@ -172,6 +196,8 @@ int		read_content(t_data *data)
 			return (0);
 		if (test_first_line)
 		{
+			if (is_comment(line) == 2)
+				continue ;
 			if (!ft_strisnum(line) || (data->na = ft_atoi(line)) <= 0)
 				return (0);
 			test_first_line = 0;
