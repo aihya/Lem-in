@@ -6,7 +6,7 @@
 /*   By: aihya <aihya@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/30 19:08:29 by aihya             #+#    #+#             */
-/*   Updated: 2020/01/03 23:43:32 by aihya            ###   ########.fr       */
+/*   Updated: 2020/01/10 17:21:29 by aihya            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,28 +15,20 @@
 char	*read_line(void)
 {
 	char	*line;
-	char	buff;
-	char	buffer[1024];
+	char	buff[2];
 	int		ret;
-	int		i;
 
-	buff = '\0';
-	buffer[0] = '\0';
+	ft_bzero((void *)buff, 2);
 	line = NULL;
 	ret = 0;
-	i = 0;
-	while ((ret = read(STDIN_FILENO, &buff, 1)) != -1 && i < 1024)
+	while ((ret = read(STDIN_FILENO, buff, 1)) != -1)
 	{
-		if (buff == '\n' || ret == 0)
+		if (buff[0] == '\n' || ret == 0)
 			break ;
-		buffer[i] = buff;
+		ft_strojoin(&line, buff, 1);
+		ft_bzero((void *)buff, 2);
 		ret = 0;
-		i++;
 	}
-	buffer[i] = '\0';
-	if (i == 0)
-		return (NULL);
-	line = ft_strdup(buffer);
 	return (line);
 }
 
