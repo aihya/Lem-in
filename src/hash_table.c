@@ -6,13 +6,11 @@
 /*   By: aihya <aihya@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/27 12:18:29 by aihya             #+#    #+#             */
-/*   Updated: 2020/01/10 16:50:42 by aihya            ###   ########.fr       */
+/*   Updated: 2020/01/10 17:56:17 by aihya            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem-in.h"
-
-
 
 int		init_hashtable(t_data* data)
 {
@@ -135,7 +133,6 @@ int		set_command(t_data* data, int index)
 	hash = 0;
 	if (data->content[index + 1])
 	{
-	printf("--> [%s][%s]\n", data->content[index], data->content[index + 1]);
 		if (is_vertex(data->content[index + 1]) != 1)
 			return (0);
 		if (ft_strequ(data->content[index], START_CMD))
@@ -158,13 +155,7 @@ int		set_command(t_data* data, int index)
 int		fill_hashtable(t_data* data)
 {
 	int			i;
-//	int			hash;
-//	char**		buff;
-//	t_vertex*	vertex;
 
-	printf("--------------\n");
-	ft_print_chain(&(data->content), "\n");
-	printf("--------------\n");
 	if (data->content == NULL)
 		return (0);
 	i = 0;
@@ -173,22 +164,12 @@ int		fill_hashtable(t_data* data)
 		if (ft_strequ(data->content[i], START_CMD)
 		||	ft_strequ(data->content[i], END_CMD))
 		{
-			printf("START / END\n");
 			if (!set_command(data, i))
 				return (0);
 			i++;
 		}
 		else if (is_vertex(data->content[i]) && set_vertex(data, i, NULL) == NULL)
 			return (0);
-//		{
-//			buff = ft_strsplit(data->content[i], ' ');
-//			if (buff == NULL)
-//				return (0);
-//			hash = hash_function(buff[0], data->nr);
-//			if ((vertex = add_to_hashtable(data, hash, buff[0])) == NULL)
-//				return (0);
-//			ft_chain_free(&buff);
-//		}
 		i++;
 	}
 	if (data->start == NULL || data->end == NULL)
