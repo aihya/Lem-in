@@ -6,7 +6,7 @@
 /*   By: aihya <aihya@student.1337.ma>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 00:07:54 by aihya             #+#    #+#             */
-/*   Updated: 2020/01/10 17:12:00 by aihya            ###   ########.fr       */
+/*   Updated: 2020/01/10 17:32:20 by aihya            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ char	*ft_strjoin(const char *s1, const char *s2)
 	size_t	s2_size;
 	size_t	i;
 
-//	if (!s1 || !s2)
-//		return (NULL);
 	s1_size = ft_strlen(s1);
 	s2_size = ft_strlen(s2);
 	result = (char *)malloc(sizeof(char) * (s1_size + s2_size + 1));
