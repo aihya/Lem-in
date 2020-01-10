@@ -6,7 +6,7 @@
 /*   By: aihya <aihya@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/30 19:08:29 by aihya             #+#    #+#             */
-/*   Updated: 2020/01/10 17:21:29 by aihya            ###   ########.fr       */
+/*   Updated: 2020/01/10 17:46:52 by aihya            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	*read_line(void)
 		if (buff[0] == '\n' || ret == 0)
 			break ;
 		ft_strojoin(&line, buff, 1);
-		ft_bzero((void *)buff, 2);
+		ft_bzero((void *)buff, 1);
 		ret = 0;
 	}
 	return (line);
