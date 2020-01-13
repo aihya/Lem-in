@@ -6,7 +6,7 @@
 /*   By: aihya <aihya@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/25 21:36:40 by aihya             #+#    #+#             */
-/*   Updated: 2020/01/03 23:51:18 by aihya            ###   ########.fr       */
+/*   Updated: 2020/01/13 16:55:49 by aihya            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # define START_CMD	"##start"
 # define END_CMD	"##end"
 # define CMD		1
-# define COMMENT	2
+# define CMT		2
 # define VERTEX		1
 # define LINK		2
 
