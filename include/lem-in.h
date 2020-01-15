@@ -6,7 +6,7 @@
 /*   By: aihya <aihya@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/25 21:36:40 by aihya             #+#    #+#             */
-/*   Updated: 2020/01/13 16:55:49 by aihya            ###   ########.fr       */
+/*   Updated: 2020/01/15 19:16:43 by aihya            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,33 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <fcntl.h>
 # include "libft.h"
 
 # define START_CMD	"##start"
 # define END_CMD	"##end"
 # define CMD		1
-# define CMT		2
+# define COMMENT	2
 # define VERTEX		1
 # define LINK		2
 
+typedef struct	s_link
+{
+	t_vertex		*destination;
+	int				flow;
+	struct s_link	*next;
+}				t_link;
+
+typedef struct	s_links
+{
+	t_link			*head;
+}				t_links;
+
 typedef	struct	s_vertex
 {
-	char*				name;
-	struct s_vertex*	neighbors;
-	struct s_vertex*	next;
+	char			*name;
+	t_links			*links;
+	struct s_vertex	*next;
 }				t_vertex;
 
 typedef	struct	s_data
@@ -38,19 +51,18 @@ typedef	struct	s_data
 	int				nr;
 	int				is;
 	int				ie;
-	char**			content;
-	t_vertex*		vertices;
-	t_vertex*		start;
-	t_vertex*		end;
-	t_vertex**		hashtable;
+	char			**content;
+	t_vertex		*vertices;
+	t_vertex		*start;
+	t_vertex		*end;
+	t_vertex		**hashtable;
 }				t_data;
 
-int				get_next_line(const int fd, char** line);
-int				init_hashtable(t_data* data);
-int				read_content(t_data* data);
+int				init_hashtable(t_data *data);
+int				read_content(t_data *data);
 int				is_vertex(char *line);
-int				init_hashtable(t_data* data);
-int				fill_hashtable(t_data* data);
+int				init_hashtable(t_data *data);
+int				fill_hashtable(t_data *data);
 int				error();
 
 #endif

@@ -6,7 +6,7 @@
 #    By: aihya <aihya@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/30 10:17:50 by aihya             #+#    #+#              #
-#    Updated: 2020/01/10 21:53:56 by aihya            ###   ########.fr        #
+#    Updated: 2020/01/14 18:16:35 by aihya            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,7 @@ all : $(NAME)
 $(NAME): $(OBJ)
 	@make -C libft
 	@echo "\033[1;34mCreating $(NAME)\033[0m"
-	gcc $(OBJ) $(LIBS) -o $@
+	@gcc $(OBJ) $(LIBS) -o $@
 
 $(OBJ_PATH)/%.o : $(SRC_PATH)/%.c $(DEPS)
 	@mkdir $(OBJ_PATH) 2> /dev/null || true

@@ -6,7 +6,7 @@
 /*   By: aihya <aihya@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/27 12:18:29 by aihya             #+#    #+#             */
-/*   Updated: 2020/01/13 15:13:08 by aihya            ###   ########.fr       */
+/*   Updated: 2020/01/14 18:17:43 by aihya            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,31 +159,20 @@ int		fill_hashtable(t_data* data)
 	if (data->content == NULL)
 		return (0);
 	i = 0;
-	ft_putendl("------- fill_hashtable -------");
 	while (data->content[i])
 	{
-		ft_putendl(data->content[i]);
 		if (ft_strequ(data->content[i], START_CMD)
 		||	ft_strequ(data->content[i], END_CMD))
 		{
 			if (!set_command(data, i))
-			{
-				ft_putendl("set_command");
 				return (0);
-			}
 			i++;
 		}
 		else if (is_vertex(data->content[i]) && set_vertex(data, i, NULL) == NULL)
-		{
-			ft_putendl("is_vertex");
 			return (0);
-		}
 		i++;
 	}
 	if (data->start == NULL || data->end == NULL)
-	{
-		ft_putendl("OR");
 		return (0);
-	}
 	return (1);
 }
