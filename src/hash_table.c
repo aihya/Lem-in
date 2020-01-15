@@ -6,7 +6,7 @@
 /*   By: aihya <aihya@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/27 12:18:29 by aihya             #+#    #+#             */
-/*   Updated: 2020/01/14 18:17:43 by aihya            ###   ########.fr       */
+/*   Updated: 2020/01/15 19:33:31 by aihya            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,5 +174,6 @@ int		fill_hashtable(t_data* data)
 	}
 	if (data->start == NULL || data->end == NULL)
 		return (0);
+	data->last_index = i;
 	return (1);
 }

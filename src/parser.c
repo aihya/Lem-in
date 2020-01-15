@@ -6,7 +6,7 @@
 /*   By: aihya <aihya@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/30 19:08:29 by aihya             #+#    #+#             */
-/*   Updated: 2020/01/15 18:23:19 by aihya            ###   ########.fr       */
+/*   Updated: 2020/01/15 19:39:02 by aihya            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,8 @@ int		is_link(char* line)
 	if (ret && (buf = ft_strsplit(line, '-')) == NULL)
 		ret = 0;
 	if (ret && ft_chain_size(buf) != 2)
+		ret = 0;
+	if (ret && (buf[0][0] == 'L' || buf[1][0] == 'L'))
 		ret = 0;
 	ft_chain_free(&buf);
 	return (ret);

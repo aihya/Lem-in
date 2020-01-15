@@ -6,7 +6,7 @@
 /*   By: aihya <aihya@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/25 21:36:40 by aihya             #+#    #+#             */
-/*   Updated: 2020/01/15 19:16:43 by aihya            ###   ########.fr       */
+/*   Updated: 2020/01/15 19:48:50 by aihya            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,25 +28,26 @@
 
 typedef struct	s_link
 {
-	t_vertex		*destination;
 	int				flow;
+	struct s_vertex	*dest;
 	struct s_link	*next;
 }				t_link;
 
 typedef struct	s_links
 {
-	t_link			*head;
+	struct s_link	*head;
 }				t_links;
 
 typedef	struct	s_vertex
 {
 	char			*name;
-	t_links			*links;
+	struct s_links	*links;
 	struct s_vertex	*next;
 }				t_vertex;
 
 typedef	struct	s_data
 {
+	int				last_index;
 	int				na;
 	int				nr;
 	int				is;
@@ -58,9 +59,9 @@ typedef	struct	s_data
 	t_vertex		**hashtable;
 }				t_data;
 
-int				init_hashtable(t_data *data);
 int				read_content(t_data *data);
 int				is_vertex(char *line);
+int				is_comment(char* line);
 int				init_hashtable(t_data *data);
 int				fill_hashtable(t_data *data);
 int				error();
