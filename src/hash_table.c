@@ -6,7 +6,7 @@
 /*   By: aihya <aihya@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/27 12:18:29 by aihya             #+#    #+#             */
-/*   Updated: 2020/01/15 19:33:31 by aihya            ###   ########.fr       */
+/*   Updated: 2020/01/16 22:11:37 by aihya            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ t_vertex*	new_vertex(char* name)
 	if ((vertex = (t_vertex*)malloc(sizeof(t_vertex))) == NULL)
 		return (NULL);
 	vertex->name = ft_strdup(name);
+	vertex->counter = 0;
+	vertex->links = NULL;
 	vertex->next = NULL;
 	return (vertex);
 }
@@ -139,13 +141,13 @@ int		set_command(t_data* data, int index)
 		{
 			if ((data->start = set_vertex(data, index + 1, &hash)) == NULL)
 				return (0);
-			data->is = hash;
+			data->is = hash; //// Useless variable
 		}
 		else
 		{
 			if ((data->end = set_vertex(data, index + 1, &hash)) == NULL)
 				return (0);
-			data->ie = hash;
+			data->ie = hash; //// Useless variable
 		}
 		return (1);
 	}
@@ -166,14 +168,18 @@ int		fill_hashtable(t_data* data)
 		{
 			if (!set_command(data, i))
 				return (0);
+			data->last_index = i + 2;
 			i++;
 		}
-		else if (is_vertex(data->content[i]) && set_vertex(data, i, NULL) == NULL)
-			return (0);
+		else if (is_vertex(data->content[i]))
+		{
+			if (set_vertex(data, i, NULL) == NULL)
+				return (0);
+			data->last_index = i + 1;
+		}
 		i++;
 	}
 	if (data->start == NULL || data->end == NULL)
 		return (0);
-	data->last_index = i;
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: aihya <aihya@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/25 21:36:40 by aihya             #+#    #+#             */
-/*   Updated: 2020/01/15 19:48:50 by aihya            ###   ########.fr       */
+/*   Updated: 2020/01/16 22:14:32 by aihya            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,11 @@ typedef struct	s_link
 	struct s_link	*next;
 }				t_link;
 
-typedef struct	s_links
-{
-	struct s_link	*head;
-}				t_links;
-
 typedef	struct	s_vertex
 {
 	char			*name;
-	struct s_links	*links;
+	unsigned int	counter;
+	struct s_link	*links;
 	struct s_vertex	*next;
 }				t_vertex;
 
@@ -64,6 +60,8 @@ int				is_vertex(char *line);
 int				is_comment(char* line);
 int				init_hashtable(t_data *data);
 int				fill_hashtable(t_data *data);
+int				hash_function(char *str, int upper_bound);
+int				parse_links(t_data *data);
 int				error();
 
 #endif

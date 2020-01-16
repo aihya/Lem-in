@@ -6,7 +6,7 @@
 #    By: aihya <aihya@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/30 10:17:50 by aihya             #+#    #+#              #
-#    Updated: 2020/01/14 18:16:35 by aihya            ###   ########.fr        #
+#    Updated: 2020/01/16 15:59:17 by aihya            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ NAME = lem-in
 SRC_NAME =	main.c \
 			hash_table.c \
 			parser.c \
-			get_next_line.c
+			links.c
 
 OBJ_NAME =	$(SRC_NAME:.c=.o)
 
